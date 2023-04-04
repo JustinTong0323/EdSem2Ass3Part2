@@ -2,6 +2,7 @@ package a3algorithms;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,7 +14,7 @@ public class AdvancedTextFileReader {
     private AdvancedTextFileReader() {} // 01/04/2023 updated to have private visibility, do not change
 
     /**
-     * TODO: advancedReadFile: read all the words of a file between two specific lines.
+     * DONE: advancedReadFile: read all the words of a file between two specific lines.
      *  Works like BasicTextFileReader but with an extra restriction. 01/04/2023  updated
      *  Don't call the BasicTextFileReader code: put all the code in this method. 01/04/2023  updated
      *  Process lines in order.
@@ -30,17 +31,45 @@ public class AdvancedTextFileReader {
          * The characters to remove from a word.
          */
         final String charsToDelete = "[^A-Za-z0-9'\\s]+";
+        ArrayList<String> words = new ArrayList<>();
 
         boolean started = false;
 
         try ( final Scanner sc = new Scanner(new File(filename)) ) {
             while ( sc.hasNextLine() ) {
                 String line = sc.nextLine();
+                if (line.contains(START_MARKER)) {
+                    started = true;
+                    continue;
+                }
+                if (line.contains(STOP_MARKER)) {
+                    break;
+                }
+                if (started) {
+                    // remove all charsToDelete
+                    line = line.replaceAll(charsToDelete, "");
+
+                    if (line.isBlank()) {
+                        continue;
+                    }
+
+                    String[] wordsInLine = line.split("\\s+");
+
+                    for (String word : wordsInLine) {
+                        if (word.isBlank()) {
+                            continue;
+                        }
+                        if (!words.contains(word)) {
+                            String normalisedWord = Normaliser.normalise(word);
+                            words.add(normalisedWord);
+                        }
+                    }
+                }
             }
         } catch ( FileNotFoundException e ) {
             throw new RuntimeException(e);
         }
 
-        return null;
+        return words;
     }
 }

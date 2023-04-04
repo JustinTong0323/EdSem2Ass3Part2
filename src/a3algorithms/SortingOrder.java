@@ -7,23 +7,24 @@ public enum SortingOrder {
     ASCENDING(false),
     REVERSED(true),
     NOT_REVERSED(false);
-    final boolean reversed = false; // TODO: you need to initialise this elsewhere.
+    final boolean reversed; // DONE: you need to initialise this elsewhere.
 
     /**
-     * TODO: constructor.
+     * DONE: constructor.
      *  Ensure the class variable is initialised.
      *
      *  @param reversed
      */
     SortingOrder(boolean reversed) {
+        this.reversed = reversed;
     }
 
     /**
-     * TODO: isReversed() checks whether the named sort order is reversed
+     * DONE: isReversed() checks whether the named sort order is reversed
      *
      * @return
      */
     public boolean isReversed() {
-        return false;
+        return reversed;
     }
 }

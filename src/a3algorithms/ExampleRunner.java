@@ -18,7 +18,7 @@ public class ExampleRunner {
             String.format("[%s]:\t", PROGRAM_NAME);
 
     public static final String PRELIMINARY_OK_MSG = "Preliminary checks passed";
-    public static final String EXTRA_OK_MSG       = "Extra checks passed";
+    public static final String EXTRA_OK_MSG = "Extra checks passed";
 
     public static final int JDK_MINIMUM = 11;
 
@@ -35,7 +35,7 @@ public class ExampleRunner {
      */
     private static final boolean PRELIMINARY_CHECKS_PASSED =
             IntStream.range(0, PRELIMINARY_CHECKS.length)
-                     .allMatch(i -> PRELIMINARY_CHECKS[i]);
+                    .allMatch(i -> PRELIMINARY_CHECKS[i]);
 
     /**
      * Make the command-line arguments available to the whole class
@@ -43,7 +43,6 @@ public class ExampleRunner {
     private static String[] args;
 
     /**
-     *
      * @return name of the method that called this method
      */
     private static String getCallingMethodName() {
@@ -55,35 +54,37 @@ public class ExampleRunner {
          */
         final int grandparent = 2;
         return new Throwable()
-                   .getStackTrace()[grandparent]
-                   .getMethodName();
+                .getStackTrace()[grandparent]
+                .getMethodName();
     }
 
     private static void log(boolean ok) {
-        if ( VERBOSE.isVerbose() ) {
+        if (VERBOSE.isVerbose()) {
             System.out.printf("%s%s()\t%S%n",
-                              LOG_PREFIX,
-                              getCallingMethodName(),
-                              ok);
+                    LOG_PREFIX,
+                    getCallingMethodName(),
+                    ok);
         }
     }
+
     private static void log(String message) {
-        if ( VERBOSE.isVerbose() ) {
+        if (VERBOSE.isVerbose()) {
             System.out.printf("%s%s()\t%s%n",
-                              LOG_PREFIX,
-                              getCallingMethodName(),
-                              message);
+                    LOG_PREFIX,
+                    getCallingMethodName(),
+                    message);
         }
     }
 
     /**
      * Finds the major version of the JDK. Doesn't work for early versions
      * of Java.
+     *
      * @return The major version of the JDK being used
      */
     private static int getJavaVersion() {
         return Integer.parseInt(System.getProperty("java.version")
-                                      .split("\\.")[0]); // 01/04/2023 updated to capture the first part
+                .split("\\.")[0]); // 01/04/2023 updated to capture the first part
     }
 
     private static boolean jdkAcceptable() {
@@ -94,16 +95,17 @@ public class ExampleRunner {
     }
 
     /**
-     * TODO: the number of command-line arguments must be acceptable.
+     * DONE: the number of command-line arguments must be acceptable.
      *   Acceptable is measured against the required minimum number of arguments.
      *
      * @param args
      * @return
      */
     private static boolean argsLengthOK(String[] args) {
+        int argsLength = args.length;
         log(String.format("Checking %d is an acceptable number of command-line arguments",
-                          args.length));
-        boolean ok = false;
+                argsLength));
+        boolean ok = argsLength >= MIN_NUMBER_ARGS;
         log(ok);
         return ok;
     }
@@ -123,21 +125,28 @@ public class ExampleRunner {
                 final FileInputStream fis = new FileInputStream(filename)
         ) {
             ok = fis.read() != -1; // check file is not empty by reading something
-        } catch ( IOException e ) {ok = false;}
+        } catch (IOException e) {
+            ok = false;
+        }
 
         log(ok);
         return ok;
     }
 
     /**
-     * TODO: complete filesOK: checks all provided files are ok.
+     * DONE: complete filesOK: checks all provided files are ok.
      *
      * @param filelist
      * @return
      */
-    private static boolean filesOK(String[] filelist){
+    private static boolean filesOK(String[] filelist) {
         log(String.format("checking files %s", Arrays.asList(filelist)));
-        return false;
+        for (String file : filelist) {
+            if (!fileOK(file)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private static boolean extraChecksPassed() {
@@ -148,9 +157,9 @@ public class ExampleRunner {
     public static void main(String[] clArgs) {
         args = clArgs;
 
-        if ( PRELIMINARY_CHECKS_PASSED ) {
+        if (PRELIMINARY_CHECKS_PASSED) {
             log(PRELIMINARY_OK_MSG);
-            if ( extraChecksPassed() ) {
+            if (extraChecksPassed()) {
                 log(EXTRA_OK_MSG);
                 System.out.println("This is where you would start your program properly");
             }

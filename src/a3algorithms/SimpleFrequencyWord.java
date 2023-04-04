@@ -5,73 +5,75 @@ package a3algorithms;
  * This word has no knowledge of any other words.
  */
 public class SimpleFrequencyWord implements Comparable<SimpleFrequencyWord> {
-    // TODO: 01/04/2023 initialise elsewhere
-    protected final String word = "TODO you need to change where this is initialised";
+    // DONE: 01/04/2023 initialise elsewhere
+    protected final String word;
 
-    protected int count; // TODO: 01/04/2023 initialise elsewhere
+    protected int count;
 
     /**
-     * TODO: constructor.
+     * DONE: constructor.
      *  Ensure class variables are initialised.
      *
      * @param word
      */
     SimpleFrequencyWord(String word) {
+        this.word = word;
+        this.count = 1;
     }
 
     /**
-     * TODO: getWord() is the getter for the core word.
+     * DONE: getWord() is the getter for the core word.
      *
      * @return
      */
     public String getWord() {
-        return "TODO SimpleFrequencyWord.getWOrd()";
+        return word;
     }
 
     /**
-     * TODO: getCount() is the getter for the current word frequency.
+     * DONE: getCount() is the getter for the current word frequency.
      */
     public int getCount() {
-        return Integer.MIN_VALUE;
+        return count;
     }
 
     /**
-     * TODO: incrementCount by one.
+     * DONE: incrementCount by one.
      */
     public void incrementCount() {
+        count++;
     }
 
     /**
-     * TODO: toString generates a one-line String according to the pattern
+     * DONE: toString generates a one-line String according to the pattern
      *              digits right-justified in 4 spaces
      *              tab
      *              the word
      */
     @Override
     public String toString() {
-        return "TODO SimpleFrequencyWord.toString()";
+        return String.format("%4d\t%s", count, word);
     }
 
     /**
-     * TODO: toString(String) generates a one-line String of the frequency
-     *  then the normalised word according to the supplied pattern.
+     * DONE: toString(String) prints the word according to the supplied pattern.
      *
      * @param wordStatePattern
      * @return
      */
     public String toString(String wordStatePattern) {
-        return "TODO SimpleFrequencyWord.toString(String)";
+        return String.format(wordStatePattern, count, word);
     }
 
     /**
-     * TODO: compareTo() knows how to compare this object with another of the same type.
-     *          You need to learn how to do this. Compare frequencies.
+     * DONE: compareTo() knows how to compare this object with another of the same type.
+     *          You need to learn how to do this.
      *
      * @param other the counterpart object to be compared with.
      * @return
      */
     @Override
     public int compareTo(SimpleFrequencyWord other) {
-        return Integer.MIN_VALUE;
+        return Integer.compare(this.count, other.count);
     }
 }

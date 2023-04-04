@@ -4,7 +4,7 @@ public class TrollSpeaker {
     private TrollSpeaker() {} // 01/04/2023 updated to have private visibility, do not change
 
     /**
-     * TODO: translateIntoTroll: translates a word into trollish
+     * DONE: translateIntoTroll: translates a word into trollish
      *  The only word in trollish is:
      *   grunt
      *
@@ -12,6 +12,6 @@ public class TrollSpeaker {
      * @return
      */
     public static String translateIntoTroll(String original) {
-        return "TODO translate to troll";
+        return "grunt";
     }
 }

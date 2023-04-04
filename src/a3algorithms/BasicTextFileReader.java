@@ -2,17 +2,20 @@ package a3algorithms;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class BasicTextFileReader {
-    private BasicTextFileReader() {} // 01/04/2023 updated to have private visibility, do not change
+    private BasicTextFileReader() {
+    } // 01/04/2023 updated to have private visibility, do not change
 
      /* 01/04/2023 updated to remove incorrect comment about being the only code
                    in the package to read a file
       */
+
     /**
-     * TODO: readFile: read all the words of a file.
+     * DONE: readFile: read all the words of a file.
      *  Process lines in order.
      *  Remove charsToDelete.
      *  Split each line into its words.
@@ -28,15 +31,35 @@ public class BasicTextFileReader {
          * The characters to remove from a word.
          */
         final String charsToDelete = "[^A-Za-z0-9'\\s]+";
+        final ArrayList<String> words = new ArrayList<>();
 
-        try ( final Scanner sc = new Scanner(new File(filename)) ) {
-            while ( sc.hasNextLine() ) {
+        try (final Scanner sc = new Scanner(new File(filename))) {
+            while (sc.hasNextLine()) {
                 String line = sc.nextLine();
+
+                // remove all charsToDelete
+                line = line.replaceAll(charsToDelete, "");
+
+                if (line.isBlank()) {
+                    continue;
+                }
+
+                String[] wordsInLine = line.split("\\s+");
+
+                for (String word : wordsInLine) {
+                    if (word.isBlank()) {
+                        continue;
+                    }
+                    String normalisedWord = Normaliser.normalise(word);
+                    if (!words.contains(normalisedWord)) {
+                        words.add(normalisedWord);
+                    }
+                }
             }
-        } catch ( FileNotFoundException e ) {
+        } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
 
-        return null;
+        return words;
     }
 }
