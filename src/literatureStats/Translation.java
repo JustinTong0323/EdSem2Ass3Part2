@@ -4,10 +4,20 @@ package literatureStats;
  * Code to translate words according to the language is directly inside this enum.
  */
 public enum Translation {
-    NONE {@Override public String translate(String word) {return word;}},
+    NONE {
+        @Override
+        public String translate(String word) {
+            return word;
+        }
+    },
 
     // TODO: put the code for translating troll directly inside the overriden method
-    TROLL {@Override public String translate(String word) {return "TODO troll";}},
+    TROLL {
+        @Override
+        public String translate(String word) {
+            return "grunt";
+        }
+    },
 
     /* TODO: translate into British doggie speak. Dogs from different countries
         speak different doggie languages. British dogs speak like this:
@@ -39,7 +49,62 @@ public enum Translation {
     DOG {
         @Override
         public String translate(String word) {
-            return "TODO Woof! Bark! Grrrrowl!";
+            StringBuilder result = new StringBuilder();
+            // iterate the word to find the first vowel
+            for (int i = 0; i < word.length(); i++) {
+                if (FrequencyWord.VOWELS.contains(word.substring(i, i + 1))) {
+                    result.insert(0, word.substring(i));
+                    break;
+                }
+                result.append(word.charAt(i));
+            }
+
+            switch (word.charAt(0)) {
+                case 'b':
+                    if (result.toString().endsWith("b")) {
+                        result.append("ark");
+                    } else {
+                        result.append("bark");
+                    }
+                    break;
+                case 'g':
+                    if (result.toString().endsWith("g")) {
+                        result.append("rrrowl");
+                    } else if (result.toString().endsWith("gr")) {
+                        result.append("rrowl");
+                    } else if (result.toString().endsWith("grr")) {
+                        result.append("rowl");
+                    } else if (result.toString().endsWith("grrr")) {
+                        result.append("owl");
+                    } else {
+                        result.append("grrrowl");
+                    }
+                    break;
+                case 'r':
+                    if (result.toString().endsWith("r")) {
+                        result.append("rruf");
+                    } else if (result.toString().endsWith("rr")) {
+                        result.append("ruf");
+                    } else {
+                        result.append("rrruf");
+                    }
+                    result.append("rrruf");
+                    break;
+                case 'w':
+                    if (word.length() > 1 && word.charAt(1) == 'o') {
+                        result.append("oofWoof");
+                    } else if (result.toString().endsWith("w")) {
+                        result.append("oof");
+                    } else {
+                        result.append("woof");
+                    }
+                    break;
+                default:
+                    result.append("ay");
+                    break;
+            }
+
+            return result.toString();
         }
     };
 
@@ -60,4 +125,9 @@ public enum Translation {
      * @return
      */
     public abstract String translate(String word);
+
+    public static void main(String[] args) {
+        String test = "who";
+        System.out.println(DOG.translate(test));
+    }
 }

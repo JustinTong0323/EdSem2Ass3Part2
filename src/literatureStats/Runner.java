@@ -77,8 +77,11 @@ public class Runner {
      * @return The major version of the JDK being used
      */
     private static int getJavaVersion() {
-        return Integer.parseInt(System.getProperty("java.version")
-                                      .split("\\.")[0]); // 01/04/2023 updated to capture the first part
+        int javaVersion = Integer.parseInt(System.getProperty("java.version")
+                .split("\\.")[0]);
+        log(String.format("Java version: %s",javaVersion));
+        return javaVersion; // 01/04/2023 updated to capture the first part
+
     }
 
     private static boolean jdkAcceptable() {
@@ -89,17 +92,17 @@ public class Runner {
     }
 
     /**
-     * TODO: the number of command-line arguments must be acceptable.
+     * DONE: the number of command-line arguments must be acceptable.
      *   Acceptable is measured against the required minimum number of arguments.
      *
      * @param args
      * @return
      */
     private static boolean argsLengthOK(String[] args) {
-        log(String.format(
-                "Checking %d is an acceptable number of command-line arguments",
-                args.length));
-        boolean ok = false;
+        int argsLength = args.length;
+        log(String.format("Checking %d is an acceptable number of command-line arguments",
+                argsLength));
+        boolean ok = argsLength >= MIN_NUMBER_ARGS;
         log(ok);
         return ok;
     }
@@ -124,14 +127,19 @@ public class Runner {
     }
 
     /**
-     * TODO: complete filesOK: checks all provided files are ok
+     * DONE: complete filesOK: checks all provided files are ok
      *
      * @param filelist
      * @return
      */
     private static boolean filesOK(String[] filelist) {
         log(String.format("checking files %s", Arrays.asList(filelist)));
-        return false;
+        for (String file : filelist) {
+            if (!fileOK(file)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private static boolean extraChecksPassed() {

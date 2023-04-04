@@ -9,24 +9,26 @@ public class FrequencyWord implements Comparable<FrequencyWord> {
     public static final String DEFAULT_WORD_STATS_PATTERN = "%4d\t%s%n";
 
     /**
-     * TODO: Store the set of vowels [a, e, i, o, u] ("y" is not considered a vowel.)
+     * DONE: Store the set of vowels [a, e, i, o, u] ("y" is not considered a vowel.)
      */
-    public static final Set<String> VOWELS =null;
+    public static final Set<String> VOWELS = Set.of("a", "e", "i", "o", "u");
 
-    protected final String normalised = null; // TODO: you'll need to initialise this elsewhere
+    protected final String normalised; // DONE: you'll need to initialise this elsewhere
 
-    protected int count; // TODO: you'll need to initialise this elsewhere
+    protected int count; // DONE: you'll need to initialise this elsewhere
 
     /**
-     * TODO: Create constructor.
+     * DONE: Create constructor.
      *
      * @param word
      */
     FrequencyWord(String word) {
+        this.normalised = normalise(word);
+        this.count = 1;
     }
 
     /**
-     * TODO: normalise means a word is entirely lowercase and
+     * DONE: normalise means a word is entirely lowercase and
      *  has no leading or trailing whitespace.
      * <p>
      *  Note this returns a normalised form of the parameter.
@@ -35,58 +37,62 @@ public class FrequencyWord implements Comparable<FrequencyWord> {
      * @return
      */
     public static String normalise(String word) {
-        return "TODO: normalise(String)";
+        return word.toLowerCase().strip();
     }
 
     /**
-     * TODO: getter for the normalised form of the current word.
+     * DONE: getter for the normalised form of the current word.
      *
      * @return
      */
     public String getNormalised() {
-        return "TODO FrequencyWord.getNormalised()";
+        return normalised;
     }
 
 
     /**
-     * TODO: getter for the current frequency of the current word.
+     * DONE: getter for the current frequency of the current word.
      *
      * @return
      */
     public int getCount() {
-        return Integer.MIN_VALUE;
+        return count;
     }
 
     /**
-     * TODO: increment the frequency count of the current word by one
+     * DONE: increment the frequency count of the current word by one
      */
     public void incrementCount() {
+        count++;
     }
 
     /**
-     * TODO: gets a String of this object's data (frequency and normalised word-form)
+     * DONE: gets a String of this object's data (frequency and normalised word-form)
      *  formatted according to the default word statistics pattern.
      *
      * @return
      */
     @Override
     public String toString() {
-        return "TODO FrequencyWord.toString()";
+        return "FrequencyWord{" +
+                "normalised='" + normalised + '\'' +
+                ", count=" + count +
+                "}\n";
     }
 
     /**
-     * TODO: gets a String of this object's data (frequency and normalised word-form)
+     * DONE: gets a String of this object's data (frequency and normalised word-form)
      *  formatted according to the provided word statistics pattern.
      *
      * @param wordStatePattern
      * @return
      */
     public String toString(String wordStatePattern) {
-        return "TODO: FrequencyWord.toString(String)";
+        return String.format(wordStatePattern, count, normalised);
     }
 
     /**
-     * TODO: A FrequencyWord knows how to compare itself with another FrequencyWord.
+     * DONE: A FrequencyWord knows how to compare itself with another FrequencyWord.
      *  You will have to research how this is done. Compare frequencies.
      *
      * @param other the object to be compared.
@@ -94,6 +100,12 @@ public class FrequencyWord implements Comparable<FrequencyWord> {
      */
     @Override
     public int compareTo(FrequencyWord other) {
-        return Integer.MIN_VALUE;
+        return Integer.compare(this.count, other.count);
+    }
+
+    public static void main(String[] args) {
+        FrequencyWord fw = new FrequencyWord("Hello");
+        System.out.println(fw);
+        System.out.println(fw.toString(DEFAULT_WORD_STATS_PATTERN));
     }
 }

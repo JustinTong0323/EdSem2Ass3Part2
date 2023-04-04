@@ -17,6 +17,7 @@ public class FrequencyDocumentPG extends FrequencyDocument {
      *  one-liner.
      */
     public FrequencyDocumentPG() {
+        super();
     }
 
     /**
@@ -26,6 +27,7 @@ public class FrequencyDocumentPG extends FrequencyDocument {
      * @param filename
      */
     public FrequencyDocumentPG(String filename) {
+        this.initialise(filename);
     }
 
     /**
@@ -37,6 +39,7 @@ public class FrequencyDocumentPG extends FrequencyDocument {
      * @param nonWordChars
      */
     public FrequencyDocumentPG(String filename, String nonWordChars) {
+        this.initialise(filename, nonWordChars);
     }
 
     /**
@@ -46,6 +49,7 @@ public class FrequencyDocumentPG extends FrequencyDocument {
      * @param config
      */
     public FrequencyDocumentPG(FrequencyReaderConfig config) {
+        super(config);
     }
 
     /**
@@ -58,6 +62,7 @@ public class FrequencyDocumentPG extends FrequencyDocument {
      */
     public FrequencyDocumentPG(FrequencyReaderConfig config,
                                String nonWordChars) {
+        super(config, nonWordChars);
     }
 
     /**
@@ -68,6 +73,8 @@ public class FrequencyDocumentPG extends FrequencyDocument {
      */
     @Override
     public void initialise(String filename) {
+        setConfig(new FrequencyReaderConfig(filename, PG_DOCUMENT_START, PG_DOCUMENT_STOP, Verbosity.MAXIMUM));
+        setNonWordChars(FrequencyDocumentReader.DEFAULT_NON_WORD_CHARS);
     }
 
     /**
@@ -80,5 +87,13 @@ public class FrequencyDocumentPG extends FrequencyDocument {
      */
     @Override
     public void initialise(String filename, String nonWordChars) {
+        setConfig(new FrequencyReaderConfig(filename, PG_DOCUMENT_START, PG_DOCUMENT_STOP, Verbosity.MAXIMUM));
+        setNonWordChars(nonWordChars);
+    }
+
+    public static void main(String[] args) {
+        FrequencyDocumentPG doc = new FrequencyDocumentPG("input/macbeth.txt");
+        doc.readDocument();
+        doc.printStatsNormalisedWords(FrequencyWord.DEFAULT_WORD_STATS_PATTERN);
     }
 }

@@ -1,5 +1,6 @@
 package literatureStats;
 
+import java.util.Arrays;
 import java.util.Map;
 
 // updated comment to explain how to use the object properly
@@ -19,7 +20,7 @@ import java.util.Map;
 public class FrequencyDocument {
 
     /**
-     * TODO: words and frequencies stored in a data structure of whatever type you want.
+     * DONE: words and frequencies stored in a data structure of whatever type you want.
      */
     protected Map<String, FrequencyWord> words;
 
@@ -39,69 +40,77 @@ public class FrequencyDocument {
     }
 
     /**
-     * TODO: constructor based on a filename.
+     * DONE: constructor based on a filename.
      *
      * @param filename
      */
     public FrequencyDocument(String filename) {
+        this.initialise(filename);
     }
 
     /**
-     * TODO: constructor for filename and a pattern specifying characters
+     * DONE: constructor for filename and a pattern specifying characters
      *  that are not allowed in words.
      *
      * @param filename
      * @param nonWordChars
      */
     public FrequencyDocument(String filename, String nonWordChars) {
+        this.initialise(filename, nonWordChars);
     }
 
     /**
-     * TODO: constructor using a configuration object.
+     * DONE: constructor using a configuration object.
      *
      * @param config
      */
     public FrequencyDocument(FrequencyReaderConfig config) {
+        this.initialise(config);
     }
 
     /**
-     * TODO: constructor using a configuration object and a pattern
+     * DONE: constructor using a configuration object and a pattern
      *  specifying characters that are not allowed in words.
      *
      * @param config
      * @param nonWordChars
      */
-    public FrequencyDocument(FrequencyReaderConfig config,
-                             String nonWordChars) {
+    public FrequencyDocument(FrequencyReaderConfig config, String nonWordChars) {
+        this.initialise(config, nonWordChars);
     }
 
     /**
-     * TODO: set or reset the configuration object.
+     * DONE: set or reset the configuration object.
      *
      * @param config
      */
     public void setConfig(FrequencyReaderConfig config) {
+        this.config = config;
     }
 
     /**
-     * TODO: Initialise based on a configuration object.
+     * DONE: Initialise based on a configuration object.
      *
      * @param config
      */
     public void initialise(FrequencyReaderConfig config) {
+        setConfig(config);
+        setNonWordChars(FrequencyDocumentReader.DEFAULT_NON_WORD_CHARS);
     }
 
     /**
-     * TODO: initialise based on the filename to read. You must provide
+     * DONE: initialise based on the filename to read. You must provide
      *  default values for any that are not provided.
      *
      * @param filename
      */
     public void initialise(String filename) {
+        setConfig(new FrequencyReaderConfig(filename, null, null, Verbosity.MAXIMUM));
+        setNonWordChars(FrequencyDocumentReader.DEFAULT_NON_WORD_CHARS);
     }
 
     /**
-     * TODO: initialise based on the filename to read and a pattern
+     * DONE: initialise based on the filename to read and a pattern
      *  specifying characters that are not allowed in words. You must provide
      *   default values for any that are not provided.
      *
@@ -109,10 +118,12 @@ public class FrequencyDocument {
      * @param nonWordChars
      */
     public void initialise(String filename, String nonWordChars) {
+        setConfig(new FrequencyReaderConfig(filename, null, null, Verbosity.MAXIMUM));
+        setNonWordChars(nonWordChars);
     }
 
     /**
-     * TODO: initialise based on a configuration and a pattern specifying characters
+     * DONE: initialise based on a configuration and a pattern specifying characters
      *  that are not allowed in words. This version of initialise() needs the
      *  full set of information provided.
      *
@@ -120,67 +131,80 @@ public class FrequencyDocument {
      * @param nonWordChars
      */
     public void initialise(FrequencyReaderConfig config, String nonWordChars) {
+        setConfig(config);
+        setNonWordChars(nonWordChars);
     }
 
     /**
-     * TODO: gets the pattern showing the characters that are not allowed in words.
+     * DONE: gets the pattern showing the characters that are not allowed in words.
      *
      * @return
      */
     public String getNonWordChars() {
-        return "TODO FrequencyDocument.getNonWordChars";
+        return this.nonWordChars;
     }
 
     /**
-     * TODO: sets the pattern of characters that are not allowed in words.
+     * DONE: sets the pattern of characters that are not allowed in words.
      *
      * @param nonWordChars
      */
     public void setNonWordChars(String nonWordChars) {
+        this.nonWordChars = nonWordChars;
     }
 
     /**
-     * TODO: readDocument() calls the helper class's method to read a file.
+     * DONE: readDocument() calls the helper class's method to read a file.
      *  In the method here, it may be necessary to convert the data structure
      *  returned into the one used in this class.
      */
     public void readDocument() {
+        this.words = FrequencyDocumentReader.readDocument(this.config, this.nonWordChars);
     }
 
     /**
-     * TODO: getStatsNormalisedWords() returns the statistics of normalised words
+     * DONE: getStatsNormalisedWords() returns the statistics of normalised words
      *  with the String in the default format provided by the FrequencyWord class.
      *
      * @return
      */
     public String[] getStatsNormalisedWords() {
-        return new String[]{"TODO FrequencyDocument.getStatsNormalisedWords()"};
+        return words.values().stream().map(FrequencyWord::toString).toArray(String[]::new);
     }
 
     /**
-     * TODO: getStatsNormalisedWords() returns the statistics of normalised words
+     * DONE: getStatsNormalisedWords() returns the statistics of normalised words
      *  with the String in the format provided by the parameter.
      *
      * @param pattern
      * @return
      */
     public String[] getStatsNormalisedWords(String pattern) {
-        return new String[]{"TODO FrequencyDocument.getStatsNormalisedWords()"};
+        return words.values().stream().map(fw -> fw.toString(pattern)).toArray(String[]::new);
     }
 
     /**
-     * TODO: printStatsNormalisedWords() prints the statistics of normalised words
+     * DONE: printStatsNormalisedWords() prints the statistics of normalised words
      *  with the String in the default format provided by the FrequencyWord class.
      */
     public void printStatsNormalisedWords() {
+        Arrays.stream(getStatsNormalisedWords()).forEach(System.out::println);
     }
 
     /**
-     * TODO: printStatsNormalisedWords() prints the statistics of normalised words
+     * DONE: printStatsNormalisedWords() prints the statistics of normalised words
      *  with the String in the format provided by the parameter.
      *
      * @param pattern
      */
     public void printStatsNormalisedWords(String pattern) {
+        Arrays.stream(getStatsNormalisedWords(pattern)).forEach(System.out::println);
+    }
+
+    public static void main(String[] args) {
+        FrequencyDocument fd = new FrequencyDocument();
+        fd.initialise("input/07-putting-it-all-together.txt");
+        fd.readDocument();
+        fd.printStatsNormalisedWords(FrequencyWord.DEFAULT_WORD_STATS_PATTERN);
     }
 }

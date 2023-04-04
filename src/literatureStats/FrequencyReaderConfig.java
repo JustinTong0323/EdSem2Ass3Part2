@@ -33,18 +33,19 @@ public class FrequencyReaderConfig {
     }
 
     /**
-     * TODO: get the verbosity for the current configuration.
+     * DONE: get the verbosity for the current configuration.
      *
       * @return
      */
     public Verbosity getVerbosity() {
-        return Verbosity.MAXIMUM;
+        return verbosity;
     }
 
     /**
-     * TODO: set the verbosity for the current configuration.
+     * DONE: set the verbosity for the current configuration.
      * @param verbosity
      */
     public void setVerbosity(Verbosity verbosity) {
+        this.verbosity = verbosity;
     }
 }
