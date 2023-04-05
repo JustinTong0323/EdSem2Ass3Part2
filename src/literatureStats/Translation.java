@@ -62,45 +62,21 @@ public enum Translation {
                 result.append(word.charAt(i));
             }
 
-            String wordStep1 = result.toString();
             switch (word.charAt(0)) {
                 case 'b':
-                    if (word.length() > 1 && wordStep1.endsWith("b")) {
-                        result.append("ark");
-                    } else {
-                        result.append("bark");
-                    }
+                    result.append("bark");
                     break;
                 case 'g':
-                    if (wordStep1.endsWith("g")) {
-                        result.append("rrrowl");
-                    } else if (wordStep1.endsWith("gr")) {
-                        result.append("rrowl");
-                    } else if (wordStep1.endsWith("grr")) {
-                        result.append("rowl");
-                    } else if (wordStep1.endsWith("grrr")) {
-                        result.append("owl");
-                    } else {
-                        result.append("grrrowl");
-                    }
+                    result.append("rrrowl");
                     break;
                 case 'r':
-                    if (wordStep1.endsWith("rr")) {
-                        result.append("ruf");
-                    } else if (wordStep1.endsWith("r")) {
-                        result.append("rruf");
-                    } else {
-                        result.append("rrruf");
-                    }
-                    result.append("rrruf");
+                    result.append("rruf");
                     break;
                 case 'w':
                     if (word.length() > 1 && word.charAt(1) == 'o') {
                         result.append("oofWoof");
-                    } else if (wordStep1.endsWith("w")) {
-                        result.append("oof");
                     } else {
-                        result.append("woof");
+                        result.append("oof");
                     }
                     break;
                 default:
@@ -143,5 +119,6 @@ public enum Translation {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("Done");
     }
 }
