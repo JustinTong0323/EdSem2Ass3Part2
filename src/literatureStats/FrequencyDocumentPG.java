@@ -13,7 +13,7 @@ public class FrequencyDocumentPG extends FrequencyDocument {
             "*** END OF THE PROJECT GUTENBERG EBOOK";
 
     /**
-     * TODO: default constructor is the parent's constructor. This should be a 
+     * DONE: default constructor is the parent's constructor. This should be a
      *  one-liner.
      */
     public FrequencyDocumentPG() {
@@ -21,7 +21,7 @@ public class FrequencyDocumentPG extends FrequencyDocument {
     }
 
     /**
-     * TODO: constructor based on a filename. Use the defaults for information
+     * DONE: constructor based on a filename. Use the defaults for information
      *  not provided.
      *
      * @param filename
@@ -31,7 +31,7 @@ public class FrequencyDocumentPG extends FrequencyDocument {
     }
 
     /**
-     * TODO: constructor for filename and a pattern specifying characters
+     * DONE: constructor for filename and a pattern specifying characters
      *  that are not allowed in words. Use the defaults for information not
      *  provided.
      *
@@ -43,7 +43,7 @@ public class FrequencyDocumentPG extends FrequencyDocument {
     }
 
     /**
-     * TODO: constructor using a configuration object. Use the defaults for
+     * DONE: constructor using a configuration object. Use the defaults for
      *  information not provided.
      *
      * @param config
@@ -53,7 +53,7 @@ public class FrequencyDocumentPG extends FrequencyDocument {
     }
 
     /**
-     * TODO: constructor using a configuration object and a pattern
+     * DONE: constructor using a configuration object and a pattern
      *  specifying characters that are not allowed in words. This version
      *  is provided with all the information it needs and should be a one-liner.
      *
@@ -66,7 +66,7 @@ public class FrequencyDocumentPG extends FrequencyDocument {
     }
 
     /**
-     * TODO: Initialise based on a filename. Use the defaults for information
+     * DONE: Initialise based on a filename. Use the defaults for information
      *  not provided.
      *
      * @param filename
@@ -78,7 +78,7 @@ public class FrequencyDocumentPG extends FrequencyDocument {
     }
 
     /**
-     * TODO: constructor using a filename and a pattern specifying characters
+     * DONE: constructor using a filename and a pattern specifying characters
      *  that are not allowed in words. Use the defaults for information not
      *  provided.
      *
