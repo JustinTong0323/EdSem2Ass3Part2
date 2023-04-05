@@ -1,5 +1,8 @@
 package literatureStats;
 
+import java.io.File;
+import java.util.Scanner;
+
 /**
  * Code to translate words according to the language is directly inside this enum.
  */
@@ -11,7 +14,7 @@ public enum Translation {
         }
     },
 
-    // TODO: put the code for translating troll directly inside the overriden method
+    // DONE: put the code for translating troll directly inside the overriden method
     TROLL {
         @Override
         public String translate(String word) {
@@ -19,7 +22,7 @@ public enum Translation {
         }
     },
 
-    /* TODO: translate into British doggie speak. Dogs from different countries
+    /* DONE: translate into British doggie speak. Dogs from different countries
         speak different doggie languages. British dogs speak like this:
         1. Move the first non-vowel cluster to the end of the word.
             This is everything up to but not including the first vowel.
@@ -59,32 +62,33 @@ public enum Translation {
                 result.append(word.charAt(i));
             }
 
+            String wordStep1 = result.toString();
             switch (word.charAt(0)) {
                 case 'b':
-                    if (result.toString().endsWith("b")) {
+                    if (word.length() > 1 && wordStep1.endsWith("b")) {
                         result.append("ark");
                     } else {
                         result.append("bark");
                     }
                     break;
                 case 'g':
-                    if (result.toString().endsWith("g")) {
+                    if (wordStep1.endsWith("g")) {
                         result.append("rrrowl");
-                    } else if (result.toString().endsWith("gr")) {
+                    } else if (wordStep1.endsWith("gr")) {
                         result.append("rrowl");
-                    } else if (result.toString().endsWith("grr")) {
+                    } else if (wordStep1.endsWith("grr")) {
                         result.append("rowl");
-                    } else if (result.toString().endsWith("grrr")) {
+                    } else if (wordStep1.endsWith("grrr")) {
                         result.append("owl");
                     } else {
                         result.append("grrrowl");
                     }
                     break;
                 case 'r':
-                    if (result.toString().endsWith("r")) {
-                        result.append("rruf");
-                    } else if (result.toString().endsWith("rr")) {
+                    if (wordStep1.endsWith("rr")) {
                         result.append("ruf");
+                    } else if (wordStep1.endsWith("r")) {
+                        result.append("rruf");
                     } else {
                         result.append("rrruf");
                     }
@@ -93,7 +97,7 @@ public enum Translation {
                 case 'w':
                     if (word.length() > 1 && word.charAt(1) == 'o') {
                         result.append("oofWoof");
-                    } else if (result.toString().endsWith("w")) {
+                    } else if (wordStep1.endsWith("w")) {
                         result.append("oof");
                     } else {
                         result.append("woof");
@@ -109,13 +113,13 @@ public enum Translation {
     };
 
     /**
-     * TODO: Translates the word component of a {@link FrequencyWord}.
+     * DONE: Translates the word component of a {@link FrequencyWord}.
      *
      * @param frequencyWord
      * @return
      */
     public String translate(FrequencyWord frequencyWord) {
-        return "TODO: Translation.translate(FrequencyWord)";
+        return translate(frequencyWord.getNormalised());
     }
 
     /**
@@ -127,7 +131,17 @@ public enum Translation {
     public abstract String translate(String word);
 
     public static void main(String[] args) {
-        String test = "who";
-        System.out.println(DOG.translate(test));
+        try (final Scanner sc = new Scanner(new File("input/2023_04_04_a-Macbeth_dogs.txt"))) {
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                String[] words = line.split("\t->\t");
+                String translate = DOG.translate(words[0]);
+                if (!translate.equals(words[1])) {
+                    System.out.printf("Fail: %s, \t Got: %s%n", line, translate);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

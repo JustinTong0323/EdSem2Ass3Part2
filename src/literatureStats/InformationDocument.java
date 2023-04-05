@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * An InformationDocument combines a {@link FrequencyDocument} or descendant
@@ -34,7 +35,7 @@ public class InformationDocument<T extends FrequencyDocument> {
     }
 
     /**
-     * TODO: return a short-list of the first N most frequent words (or last N if reversed)
+     * DONE: return a short-list of the first N most frequent words (or last N if reversed)
      *  Only return the normalised word forms and nothing else.
      *
      * @param n
@@ -42,11 +43,11 @@ public class InformationDocument<T extends FrequencyDocument> {
      * @return
      */
     public List<String> getTopNWords(int n, SortingOrder so) {
-        return null;
+        return sortByValue(doc.words, so).keySet().stream().limit(n).collect(Collectors.toList());
     }
 
     /**
-     * TODO: return a short-list of the first N most frequent words (or last N if reversed)
+     * DONE: return a short-list of the first N most frequent words (or last N if reversed)
      *  with each prefixed by its frequency, all formatted as a String using
      *  the default word statistics pattern.
      *
@@ -55,11 +56,11 @@ public class InformationDocument<T extends FrequencyDocument> {
      * @return
      */
     public List<String> getTopNWordsEnumerated(int n, SortingOrder so) {
-        return null;
+        return sortByValue(doc.words, so).values().stream().limit(n).map(FrequencyWord::toString).collect(Collectors.toList());
     }
 
     /**
-     * TODO: return a short-list of the first N most frequent words (or last N if reversed).
+     * DONE: return a short-list of the first N most frequent words (or last N if reversed).
      *  Returns the entire {@link FrequencyWord} object for each.
      *
      * @param n
@@ -67,7 +68,7 @@ public class InformationDocument<T extends FrequencyDocument> {
      * @return
      */
     public List<FrequencyWord> getTopNFrequencyWords(int n, SortingOrder so) {
-        return null;
+        return sortByValue(doc.words, so).values().stream().limit(n).collect(Collectors.toList());
     }
 
     /**

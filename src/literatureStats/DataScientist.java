@@ -46,7 +46,7 @@ public class DataScientist {
     }
 
     public void experiment2Phase1(){
-        System.out.println("Phase 1.1: top words translated into dog");
+        System.out.println("Phase 2.1: top words translated into dog");
         for ( String word :
                 experiment2Doc.getTopNWords(3,
                                             SortingOrder.DESCENDING) ) {
