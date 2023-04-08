@@ -74,10 +74,7 @@ public class FrequencyWord implements Comparable<FrequencyWord> {
      */
     @Override
     public String toString() {
-        return "FrequencyWord{" +
-                "normalised='" + normalised + '\'' +
-                ", count=" + count +
-                "}\n";
+        return String.format(DEFAULT_WORD_STATS_PATTERN, count, normalised);
     }
 
     /**

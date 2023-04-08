@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * An InformationDocument combines a {@link FrequencyDocument} or descendant
@@ -43,7 +44,7 @@ public class InformationDocument<T extends FrequencyDocument> {
      * @return
      */
     public List<String> getTopNWords(int n, SortingOrder so) {
-        return sortByValue(doc.words, so).keySet().stream().limit(n).collect(Collectors.toList());
+        return getFrequencyWordStream(n, so).map(FrequencyWord::getNormalised).collect(Collectors.toList());
     }
 
     /**
@@ -56,7 +57,7 @@ public class InformationDocument<T extends FrequencyDocument> {
      * @return
      */
     public List<String> getTopNWordsEnumerated(int n, SortingOrder so) {
-        return sortByValue(doc.words, so).values().stream().limit(n).map(FrequencyWord::toString).collect(Collectors.toList());
+        return getFrequencyWordStream(n, so).map(FrequencyWord::toString).collect(Collectors.toList());
     }
 
     /**
@@ -68,7 +69,11 @@ public class InformationDocument<T extends FrequencyDocument> {
      * @return
      */
     public List<FrequencyWord> getTopNFrequencyWords(int n, SortingOrder so) {
-        return sortByValue(doc.words, so).values().stream().limit(n).collect(Collectors.toList());
+        return getFrequencyWordStream(n, so).collect(Collectors.toList());
+    }
+
+    private Stream<FrequencyWord> getFrequencyWordStream(int n, SortingOrder so) {
+        return sortByValue(doc.words, so).values().stream().limit(n);
     }
 
     /**

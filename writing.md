@@ -1,42 +1,42 @@
 # Writing for Assignment&nbsp;3 Part&nbsp;2 2023 #
 
-- **TODO Your name**
-- **TODO Your student ID**
-- **TODO Your tutorial group**
-- **TODO Your tutor's name**
-- **TODO Today's date in ISO 8601 format YYYY-MM-DD**
+- **Name: Xinyuan Tong**
+- **Student id: S2297280**
+- **Tutorial group: 03**
+- **Tutor's name: Daniel Barber**
+- **2023-02-16**
 
 ## Writing instructions ##
 
 Imagine the instructions as engineering requirements, thus optional
 instructions start "You **MAY**" but the rest start "You **MUST**."
 
-1.  (Optional) Customise the CSS for accessibility needs.
-2.  Personalise the information at the top of this file.
-3.  Ensure you have acknowledged the tools and sources you have used.
-4.  Be honest and don't cheat: this assignment is partly a test of your
-    ability to cope with the second year.
-5.  Write directly in English, do not translate from another language.
-6.  Write in proper sentences. You are allowed to make use of lists and
-    diagrams providing they enhance your work and are not simply a way
-    to avoid writing. Any diagrams you do use must be jpgs and less
-    than 1MB in size. The maximum allowed size of a submission is in
-    the Assignment Submission instructions. Diagrams should be tested
-    for accessibility (colour blindness and low vision) and include a
-    reasonable attempt at an accessibility description.
-7.  Your writing must make heavy use of specific references to the
-    code. Generic writing that does not make use of the actual code
-    provided are likely to be disqualified on the grounds of looking
-    like AI-generated text.
-8.  Your writing must use Java technical terms appropriately and you
-    must give a brief explanation of each the first time you use it.
-    Structure your answer so that the explanations do not interfere
-    with reading the sentence where the term appears.
-9.  Each answer needs to be long enough to cover the essential points
-    but short enough to be interesting. Answers to individual
-    questions over 200 words are probably too long. Balancing quantity
-    of detail against brevity and utility is a technical writing skill
-    you need to master.
+1. (Optional) Customise the CSS for accessibility needs.
+2. Personalise the information at the top of this file.
+3. Ensure you have acknowledged the tools and sources you have used.
+4. Be honest and don't cheat: this assignment is partly a test of your
+   ability to cope with the second year.
+5. Write directly in English, do not translate from another language.
+6. Write in proper sentences. You are allowed to make use of lists and
+   diagrams providing they enhance your work and are not simply a way
+   to avoid writing. Any diagrams you do use must be jpgs and less
+   than 1MB in size. The maximum allowed size of a submission is in
+   the Assignment Submission instructions. Diagrams should be tested
+   for accessibility (colour blindness and low vision) and include a
+   reasonable attempt at an accessibility description.
+7. Your writing must make heavy use of specific references to the
+   code. Generic writing that does not make use of the actual code
+   provided are likely to be disqualified on the grounds of looking
+   like AI-generated text.
+8. Your writing must use Java technical terms appropriately and you
+   must give a brief explanation of each the first time you use it.
+   Structure your answer so that the explanations do not interfere
+   with reading the sentence where the term appears.
+9. Each answer needs to be long enough to cover the essential points
+   but short enough to be interesting. Answers to individual
+   questions over 200 words are probably too long. Balancing quantity
+   of detail against brevity and utility is a technical writing skill
+   you need to master.
 10. The assignment instructions on the Learn Assessment page will tell
     you **how many of these writing questions to answer.**
 11. **Delete guidance and hints before submission.**
@@ -70,6 +70,24 @@ Put your acknowledgements here, arranged consistently by topic or
 source of help. You can use lists or tables as appropriate as long as
 the `markdown` works properly in IntelliJ.
 
+### **People**
+
+| Name           | Helps me with                                                                        |
+|----------------|--------------------------------------------------------------------------------------|
+| Fiona Mcneill  | The knowledge she taught in lecture is very helpful when I am doing my assignment.   |
+| Brian Mitchell | All the clarifications he did for this assignment is very useful and helps me a lot. |
+
+### **Technology**
+
+| Link                                                                                   | Helps me with                                                                             |
+|----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| [Translate.DOG question @246 Piazza](https://piazza.com/class/lbkxl8hz9he5ae/post/246) | This question helped me figure out the dog language translation and provided a test file. |
+| [Java Stream tutorial in Youtube](https://youtu.be/t1-YZ6bF-g0)                        | Taught me basic knowledge about stream api in java.                                       |
+| [Stackoverflow](https://stackoverflow.com/)                                            | The knowledge in stackoverflow is very useful when I have to use new java apis.           |
+| PowerPoints of Inf1B: Object-Oriented-Programming lectures                             | Taught me all the basic java knowledge in my mind.                                        |
+
+---
+
 ## Code location ##
 
 Explain why you put the code from `a3algorithms` into the specific
@@ -77,10 +95,115 @@ places in `literatureStats`. You must be specific about what went
 where but you do not need to give an exhaustive list: try to find a
 way to "optimise" your writing about this.
 
+### Answer:
+
+1. `literatureStats.FrequencyDocumentReader`:
+   Contains `a3algorithms.FrequencyDocumentReader`
+   and `a3algorithms.AdvancedTextFileReader`. These two classes were copied
+   into `literatureStats` as they are similar and both play a role in reading a
+   file into a `FrequencyDocument`.
+
+2. `literatureStats.Runner`: Contains `a3algorithms.ExampleRunner`. This class
+   was copied into `literatureStats` as it is used to run the program.
+
+3. `literatureStats.FrequencyWord`: Contains `a3algorithms.Normaliser`
+   and `a3algorithms.SimpleFrequencyWord`. The Normaliser was included
+   in `FrequencyWord` as it is used to normalize a word. The SimpleFrequencyWord
+   was copied into `FrequencyWord` as it shares the same functionality.
+
+4. `literatureStats.SortingOrder`: Contains `a3algorithms.SortingOrder`, it was
+   transferred to `literatureStats` due to their identical function. This class
+   defines five orders, with an associated boolean value indicating reverse or
+   not.
+
+5. `literatureStats.Verbosity`: Contains `a3algorithms.Verbosity` enumeration
+   class, as they are both used to define verbosity using five types with unique
+   values.
+
+6. `literatureStats.Translation`: Contains `a3algorithms.VowelChecker`
+   and `a3algorithms.TrollSpeaker`. The VowelChecker was included
+   in `Translation.DOG` as it is used to check if a character is a vowel. The
+   TrollSpeaker was copied into `Translation.TROLL` as it is used to translate a
+   word into a troll language.
+
+---
+
 ## DRY programming ##
 
 Show and explain examples of DRY programming in this assigment and
-where appropriate indicate what a WET version might look like.
+where appropriate indicate what a **WET version** might look like.
+
+### Answer:
+
+In `literatureStats` package:
+
+1. `FrequencyDocumentPG` inherits `FrequencyDocument`:
+   Inheritance in object-oriented programming allows a class to inherit
+   properties and methods from a parent class. This enables code reuse, reduces
+   duplication, and promotes modularity.
+    1. **Shared methods**: Both classes share common functionality , these
+       methods can be implemented in the parent class `FrequencyDocument`. The
+       child class `FrequencyDocumentPG` can then inherit these methods and use
+       or override them. **WET version**: Implement the shared methods in each
+       class separately, resulting in duplicated code.
+    2. **Template Method Pattern**: There are common algorithms shared between
+       the classes, the parent class `FrequencyDocument` defines a template
+       method with the basic structure of the algorithm. The child
+       class `FrequencyDocumentPG` can then implement or override specific steps
+       of the algorithm without changing its overall structure. **WET version**:
+       Implement the entire algorithm in both classes, leading to code
+       duplication and making it harder to update the algorithm consistently
+       across both classes.
+2. In `FrequencyDocumentReader`:
+    1. **Usage of the `FrequencyReaderConfig` class**: Instead of passing
+       multiple arguments to the `readDocument` method,
+       the `FrequencyReaderConfig` class is used to encapsulate the
+       configuration details. This reduces the number of method parameters and
+       makes the code easier to read and maintain. **WET version**: Pass all
+       configuration details as separate parameters to the `readDocument`
+       method, which would make the method signatures longer.
+    2. **Overloaded readDocument methods with default values**:
+       The `readDocument` method is overloaded to provide default values for
+       some parameters. This allows the developer to use the most appropriate
+       method depending on the available information, without having to repeat
+       code that handles default values. **WET version**: Have only one
+       readDocument method and make the caller provide all the values, even the
+       default ones, each time they call the method.
+    3. **Usage of `DEFAULT_NON_WORD_CHARS` constant**: The
+       constant `DEFAULT_NON_WORD_CHARS` is used to define the default non-word
+       characters. This ensures that the default value is used consistently
+       throughout the code and can be easily updated in one place. **WET version
+       **: Repeat the default non-word characters string literal every time it's
+       needed in the code.
+    4. **Loop for processing words in a line**: The code iterates over the words
+       in a line using a for loop and takes appropriate actions depending on
+       whether the word is new or already exists in the map. This prevents the
+       need to repeat the code for each word in the line. **WET version**: Write
+       separate code blocks for each word in the line, duplicating the logic for
+       checking if a word is new or already exists in the map.
+3. In `InformationDocument`:
+    1. **`getFrequencyWordStream` method**: This private method is used
+       by `getTopNWords`, `getTopNWordsEnumerated`, and `getTopNFrequencyWords`
+       to obtain a stream of `FrequencyWord` objects sorted by frequency. By
+       encapsulating this logic in a separate method, the code avoids
+       duplicating the sorting and limiting logic in each of the public methods.
+       **WET version**: Repeat the sorting and limiting logic in each of the
+       public methods, leading to code duplication.
+    2. **`sortByValue` method**: This method is a reusable utility that sorts a
+       given map by its values, according to a specified sorting order. This
+       method is generic, allowing it to be used with different key-value pair
+       types, promoting code reusability. **WET version**: Implement a separate
+       sorting method for each specific key-value pair type or duplicate the
+       sorting logic each time it's needed in the code, leading to code
+       duplication and reduced maintainability.
+    3. **Stream API and method chaining**: The code makes use of the Java Stream
+       API and method chaining to perform operations like filtering, mapping,
+       and collecting in a concise and readable manner. This helps reduce code
+       duplication. **WET version**: Use loops and manual iteration to perform
+       these operations, leading to more verbose code and potential duplication
+       of logic.
+
+---
 
 ## Relationships ##
 
@@ -92,6 +215,59 @@ design. Also make use of advice from the course's Code Quality and
 Conventions document, especially (but not only) DRY
 programming. Ensure you answer covers the way the two different types
 of `FrequencyDocument` are instantiated.
+
+### Answer:
+
+1. `DataScientist`: This class serves as the main entry point for the
+   application and is responsible for running the two experiments. The
+   relationship between `DataScientist` and `FrequencyDocument` is that of a
+   client and a provider.
+2. `FrequencyDocument`: This class holds and processes the frequency of words in
+   a document. The `DataScientist` class indirectly interacts with this class
+   through the `InformationDocument<FrequencyDocument>` object.
+3. `FrequencyDocumentPG`: This class is a subclass of `FrequencyDocument` that
+   specifically deals with Project Gutenberg documents. The `DataScientist`
+   class indirectly interacts with this class through
+   the `InformationDocument<FrequencyDocumentPG>` object.
+    - The `FrequencyDocument` and `FrequencyDocumentPG` classes are *
+      *instantiated** in the `runExperiment1` and `runExperiment2` methods,
+      respectively, using the `InformationDocument` constructor that takes a
+      class type argument. This design allows the `InformationDocument` class to
+      instantiate the correct type of frequency document, depending on the
+      experiment being run.
+4. `FrequencyDocumentReader`: This class reads a document and produces a
+   frequency map of words. It is indirectly related to the `DataScientist` class
+   through the `FrequencyDocument` and `FrequencyDocumentPG` classes, which use
+   the `FrequencyDocumentReader` to read and process documents.
+5. `FrequencyReaderConfig`: This class is used to configure the behavior of the
+   document reader. It is indirectly related to the `DataScientist` class
+   through the `FrequencyDocument` and `FrequencyDocumentPG` classes, which use
+   the `FrequencyReaderConfig` object to set up their reading configurations.
+6. `FrequencyWord`: This class represents a word and its frequency in a
+   document. The `DataScientist` class indirectly interacts with `FrequencyWord`
+   instances through the `InformationDocument` class methods
+   like `getTopNFrequencyWords`.
+7. `InformationDocument`: This generic class serves as a wrapper for
+   the `FrequencyDocument` and `FrequencyDocumentPG` classes.
+   The `DataScientist` class directly uses instances of this class to perform
+   the experiments.
+8. `Runner`: This class is responsible for running the main application, and it
+   creates an instance of the `DataScientist` class to perform the experiments.
+9. `SortingOrder`: This enum is used in the `InformationDocument` class to
+   define the order in which the words are sorted. The `DataScientist` class
+   directly interacts with this enum when calling methods like `getTopNWords`
+   and `getTopNFrequencyWords`.
+10. `Translation`: This enum provides translation functionality, specifically
+    the "dog" language translation. The `DataScientist` class uses this enum
+    directly in
+    the `experiment1Phase1`, `experiment1Phase3`, `experiment2Phase1`,
+    and `experiment2Phase3` methods.
+11. `Verbosity`: This enum is used in the `FrequencyReaderConfig` class to
+    define the verbosity level of the document reader. It is indirectly related
+    to `DataScientist` through the `FrequencyDocument` and `FrequencyDocumentPG`
+    classes, which use the `FrequencyReaderConfig` to configure their behavior.
+
+---
 
 ## Explain reading a file ##
 
@@ -112,12 +288,65 @@ If you were unable to make file reading work in
 `FrequencyDocumentReader` then substitute any file-reading code you
 did get working in `a3algorithms`.
 
-## Explain your code for reading Project Gutenberg files ##
+### Answer:
+
+In the `FrequencyDocumentReader` class, the file reading process is primarily
+handled by the `readDocument(FrequencyReaderConfig config, String nonWordChars)`
+method. It uses a combination of other methods and JDK library functions to read
+and process the file. Here's a breakdown of how the work is divided among
+different methods and constructs:
+
+1. **Reading the file**: The method uses the `Scanner` class from the JDK to
+   read the file line by line. The `Scanner` instance is created inside a
+   try-with-resources block, which ensures the scanner is automatically closed
+   when it's no longer needed. This is a JDK 7 feature that simplifies resource
+   management and reduces the risk of resource leaks.
+
+2. **Identifying start and stop markers**: The method checks if
+   the `START_MARKER` and `STOP_MARKER` are empty, meaning there are no start or
+   stop markers defined for the document. If both markers are empty,
+   the `started` flag is set to true, indicating the file should be processed
+   from the beginning. Otherwise, it checks for the presence of start and stop
+   markers in each line and updates the `started` flag accordingly.
+
+3. **Processing lines**: The method processes each line by removing non-word
+   characters (using the `replaceAll` method) and splitting the line into
+   words (using the `split` method). It then iterates through the words,
+   normalizes them using the `FrequencyWord.normalise` method, and updates the
+   word frequency map.
+
+4. **Updating word frequency**: If a normalized word is not present in
+   the `words` map, it is added with an initial count of 1. If the word is
+   already present, its count is incremented. Depending on the verbosity level
+   set in the `config`, the method may print messages indicating the addition or
+   increment of word frequencies.
+
+The order of statements and constructs has been carefully designed to optimize
+the file reading process:
+
+* The use of `Scanner` simplifies the file reading process by providing a
+  convenient way to read the file line by line.
+* The `started` flag and its associated conditional checks ensure that the file
+  is processed only between the start and stop markers.
+* The use of `String.replaceAll` and `String.split` methods simplifies the text
+  processing by removing unwanted characters and extracting individual words.
+* The use of a `HashMap` to store word frequencies ensures efficient insertion,
+  retrieval, and update operations.
+
+JDK 7 or later is recommended for this implementation due to the use of the
+try-with-resources construct, which simplifies resource management and reduces
+the risk of resource leaks.
+
+---
+
+## （Skip）Explain your code for reading Project Gutenberg files ##
 
 If you were able to make your code work read Project Gutenberg files
 without their preamble and postamble, then explain your algorithm here
 but only the parts that differ from your answer about reading an
 entire file. Justify the relevant parts of your design.
+
+---
 
 ## Explain your translate-to-dog implementation ##
 
@@ -126,7 +355,35 @@ explain how your algorithm implements the specification in the `TODO`
 comment. Do not give a line-by-line explanation or effectively just
 restate the guidance in the `TODO` comment.
 
-## Explain the enums ##
+### Answer:
+
+1. **Finding the first vowel**: The algorithm iterates through the characters in
+   the input word, searching for the first vowel. When it encounters a vowel, it
+   appends the substring from the current index to the end of the word to
+   the `result` StringBuilder and breaks the loop.
+
+2. **Handling different starting characters**: After obtaining the modified
+   word (with the first non-vowel cluster moved to the end), the algorithm
+   checks the original word's first character to determine the appropriate
+   doggie language suffix. The `switch` statement handles the different cases
+   for the starting characters 'b', 'g', 'r', and 'w'. For other starting
+   characters, it appends "ay" to the word.
+    * If the word begins with 'b', it appends "bark" to the result.
+    * If the word begins with 'g', it appends "rrrowl" to the result.
+    * If the word begins with 'r', it appends "rruf" to the result.
+    * If the word begins with 'w', it checks if the second character is 'o'. If
+      so, it appends "oofWoof" to the result; otherwise, it appends "oof".
+3. **Returning the translated word**: Finally, the algorithm converts
+   the `result` StringBuilder to a string and returns it.
+
+This algorithm efficiently translates a given word into British doggie language
+by identifying the first vowel, moving the initial non-vowel cluster, and
+appending the appropriate suffix based on the original word's starting
+character.
+
+---
+
+## （Skip）Explain the enums ##
 
 Explain how `enum`s are used in this assignment and the main benefits
 they appear to bring. Describe several different salient points in

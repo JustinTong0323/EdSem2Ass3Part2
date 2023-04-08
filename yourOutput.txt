@@ -21461,9 +21461,9 @@ the	->	ethay
 and	->	anday
 of	->	ofay
 Phase 1.2: top words with their frequency ranked
-FrequencyWord{normalised='the', count=914}
-FrequencyWord{normalised='and', count=636}
-FrequencyWord{normalised='of', count=482}
+ 914	the
+ 636	and
+ 482	of
 Phase 1.3: top words with their frequency and dog translation
  914	the	->	ethay
  636	and	->	anday
@@ -39869,9 +39869,9 @@ the	->	ethay
 and	->	anday
 to	->	otay
 Phase 2.2: top words with their frequency ranked
-FrequencyWord{normalised='the', count=726}
-FrequencyWord{normalised='and', count=569}
-FrequencyWord{normalised='to', count=382}
+ 726	the
+ 569	and
+ 382	to
 Phase 2.3: top words with their frequency and dog translation
  726	the	->	ethay
  569	and	->	anday

@@ -21,7 +21,7 @@ public class FrequencyDocumentReader {
      * @return
      */
     public static Map<String, FrequencyWord> readDocument(String dictionaryFileName) {
-        return readDocument(new FrequencyReaderConfig(dictionaryFileName,null,null,Verbosity.MAXIMUM));
+        return readDocument(new FrequencyReaderConfig(dictionaryFileName,FrequencyReaderConfig.EMPTY_MARKER,FrequencyReaderConfig.EMPTY_MARKER,Verbosity.MAXIMUM));
     }
 
     /**
@@ -33,7 +33,7 @@ public class FrequencyDocumentReader {
      */
     public static Map<String, FrequencyWord> readDocument(
             String dictionaryFileName, String nonWordChars) {
-        return readDocument(new FrequencyReaderConfig(dictionaryFileName,null,null,Verbosity.MAXIMUM), nonWordChars);
+        return readDocument(new FrequencyReaderConfig(dictionaryFileName,FrequencyReaderConfig.EMPTY_MARKER,FrequencyReaderConfig.EMPTY_MARKER,Verbosity.MAXIMUM), nonWordChars);
     }
 
     /**
@@ -111,17 +111,17 @@ public class FrequencyDocumentReader {
 
                     String normalisedWord = FrequencyWord.normalise(word);
 
-                    int verbosityLevel = config.getVerbosity().getVerbosityLevel();
+                    boolean isVerbose = config.getVerbosity().isVerbose();
                     if (!words.containsKey(normalisedWord)) {
                         // if word is not in the map, add it and print message
                         words.put(normalisedWord, new FrequencyWord(normalisedWord));
-                        if (verbosityLevel > 0) {
+                        if (isVerbose) {
                             System.out.printf("Added %s%n", normalisedWord);
                         }
                     } else {
                         // if word is in the map, increment the count and print message
                         words.get(normalisedWord).incrementCount();
-                        if (verbosityLevel > 0) {
+                        if (isVerbose) {
                             System.out.printf("Incremented %s to %d%n", normalisedWord, words.get(normalisedWord).getCount());
                         }
                     }

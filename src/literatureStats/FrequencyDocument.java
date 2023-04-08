@@ -105,7 +105,7 @@ public class FrequencyDocument {
      * @param filename
      */
     public void initialise(String filename) {
-        setConfig(new FrequencyReaderConfig(filename, null, null, Verbosity.MAXIMUM));
+        setConfig(new FrequencyReaderConfig(filename, FrequencyReaderConfig.EMPTY_MARKER, FrequencyReaderConfig.EMPTY_MARKER, Verbosity.MAXIMUM));
         setNonWordChars(FrequencyDocumentReader.DEFAULT_NON_WORD_CHARS);
     }
 
@@ -118,7 +118,7 @@ public class FrequencyDocument {
      * @param nonWordChars
      */
     public void initialise(String filename, String nonWordChars) {
-        setConfig(new FrequencyReaderConfig(filename, null, null, Verbosity.MAXIMUM));
+        setConfig(new FrequencyReaderConfig(filename, FrequencyReaderConfig.EMPTY_MARKER, FrequencyReaderConfig.EMPTY_MARKER, Verbosity.MAXIMUM));
         setNonWordChars(nonWordChars);
     }
 
