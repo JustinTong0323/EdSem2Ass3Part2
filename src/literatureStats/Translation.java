@@ -52,6 +52,11 @@ public enum Translation {
     DOG {
         @Override
         public String translate(String word) {
+            // if word is null or empty, return it unchanged
+            if (word == null || word.isBlank()) {
+                return word;
+            }
+
             StringBuilder result = new StringBuilder();
             // iterate the word to find the first vowel
             for (int i = 0; i < word.length(); i++) {
