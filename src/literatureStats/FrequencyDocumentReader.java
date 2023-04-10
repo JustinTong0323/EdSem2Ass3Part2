@@ -68,6 +68,7 @@ public class FrequencyDocumentReader {
             FrequencyReaderConfig config, String nonWordChars) {
         HashMap<String, FrequencyWord> words = new HashMap<>();
         boolean started = false;
+        boolean isVerbose = config.getVerbosity().isVerbose();
 
         try (final Scanner sc = new Scanner(
                 new File(config.DOCUMENT_FILENAME))) {
@@ -94,7 +95,7 @@ public class FrequencyDocumentReader {
                     continue;
                 }
 
-                String lineWithoutChars = line.replaceAll(nonWordChars, "");
+                String lineWithoutChars = line.replaceAll(nonWordChars, " ");
 
                 // skip if line is blank
                 if (lineWithoutChars.isBlank()) {
@@ -111,7 +112,6 @@ public class FrequencyDocumentReader {
 
                     String normalisedWord = FrequencyWord.normalise(word);
 
-                    boolean isVerbose = config.getVerbosity().isVerbose();
                     if (!words.containsKey(normalisedWord)) {
                         // if word is not in the map, add it and print message
                         words.put(normalisedWord, new FrequencyWord(normalisedWord));
@@ -120,9 +120,10 @@ public class FrequencyDocumentReader {
                         }
                     } else {
                         // if word is in the map, increment the count and print message
-                        words.get(normalisedWord).incrementCount();
+                        FrequencyWord frequencyWord = words.get(normalisedWord);
+                        frequencyWord.incrementCount();
                         if (isVerbose) {
-                            System.out.printf("Incremented %s to %d%n", normalisedWord, words.get(normalisedWord).getCount());
+                            System.out.printf("Incremented %s to %d%n", normalisedWord, frequencyWord.getCount());
                         }
                     }
                 }

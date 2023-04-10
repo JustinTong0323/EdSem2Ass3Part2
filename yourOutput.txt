@@ -16,12 +16,12 @@ the	->	ethay
 and	->	anday
 of	->	ofay
 Phase 1.2: top words with their frequency ranked
- 914	the
- 636	and
+ 919	the
+ 638	and
  482	of
 Phase 1.3: top words with their frequency and dog translation
- 914	the	->	ethay
- 636	and	->	anday
+ 919	the	->	ethay
+ 638	and	->	anday
  482	of	->	ofay
 
 Experiment 2: treat file as Project Gutenberg
@@ -30,10 +30,36 @@ the	->	ethay
 and	->	anday
 to	->	otay
 Phase 2.2: top words with their frequency ranked
- 726	the
- 569	and
- 382	to
+ 730	the
+ 571	and
+ 384	to
 Phase 2.3: top words with their frequency and dog translation
- 726	the	->	ethay
- 569	and	->	anday
- 382	to	->	otay
+ 730	the	->	ethay
+ 571	and	->	anday
+ 384	to	->	otay
+Phase X: top 25 words with their frequency ranked
+ 730	the
+ 571	and
+ 384	to
+ 380	i
+ 358	of
+ 287	macbeth
+ 277	a
+ 238	that
+ 237	d
+ 231	in
+ 206	you
+ 202	s
+ 192	my
+ 189	is
+ 165	not
+ 159	with
+ 153	it
+ 151	his
+ 141	be
+ 124	he
+ 123	have
+ 122	your
+ 121	but
+ 119	our
+ 116	what
